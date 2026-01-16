@@ -6,12 +6,14 @@
 <meta name="description" content=" Generate a Gorilla Tag outfit! ">
  <meta name="robots" content="index, follow">
 <title> What Jesus Did </title>
-<h1>What Jesus Did</h1>
+</head>
+<body>
+ <h1>What Jesus Did</h1>
 <h2>Your bible verse is:</h2>
 <p id="reference">loading...</p>
 <p id="bibleverse">loading...</p>
 <button id="copybutton" onclick="copy()">Copy</button>
-<script>
+ <script>
 const bibleverse = document.getElementById("bibleverse");
 const reference = document.getElementById("reference");
 
@@ -26,15 +28,26 @@ bibleverse.textContent = data.text;
 .catch(err => console.error(err));
 };
 
-  window.onload = randomVerse();
+  window.onload = randomVerse;
 
 function copy() {
 const copyText = document.getElementById("bibleverse");
-copyText.select();
-copyText.setSelectionRange("0, 99999");
-navigator.clipboard.writeText(copyText.textContent);
+
+const referenceContent = reference.textContent
+ const bibleverseContent = bibleverse.textContent;
+
+ navigator.clipboard.writeText(`${bibleverseContent} - ${referenceContent}`);
 }
 
+
 </script>
+<style>
+ body {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0;
+}
+</style>
 </body>
 </html>
