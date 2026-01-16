@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" Generate a Gorilla Tag outfit! ">
+ <meta name="robots" content="index, follow">
+<title> What Jesus Did </title>
+<h1>What Jesus Did</h1>
+<h2>Your bible verse is:</h2>
+<p id="reference">loading...</p>
+<p id="bibleverse">loading...</p>
+<button id="copybutton" onclick="copy()">Copy</button>
+<script>
+const bibleverse = document.getElementById("bibleverse");
+const reference = document.getElementById("reference");
+
+  function randomVerse() {
+let randomverse = {};
+fetch("https://bible-api.com/?random=verse")
+.then (response => response.json())
+.then (data => { randomverse = data;
+reference.textContent = data.reference;
+bibleverse.textContent = data.text;
+})
+.catch(err => console.error(err));
+};
+
+  window.onload = randomVerse();
+
+function copy() {
+const copyText = document.getElementById("bibleverse");
+copyText.select();
+copyText.setSelectionRange("0, 99999");
+navigator.clipboard.writeText(copyText.textContent);
+}
+
+</script>
+</body>
+</html>
